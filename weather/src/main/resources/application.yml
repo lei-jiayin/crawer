@@ -1,0 +1,24 @@
+# @date 2020/7/16 9:25
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xw_taes?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+server:
+  port: 9998
+
+#配置mybatis的信息
+#spring集成mybatis环境
+#pojo别名扫描包
+mybatis:
+  type-aliases-package: com.xw.crawer.weather.*
+  #加载Mybatis映射文件
+  mapper-locations: classpath:mapper/*Mapper.xml
+logging:
+  level:
+    com:
+      xw:
+        crawer:
+          weather:
+            dao: debug

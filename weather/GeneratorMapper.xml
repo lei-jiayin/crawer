@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--@date 2020/7/16 9:58-->
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--指定连接数据库的jdbc驱动包所在位置，指定到你本机的完整路径，maven仓库下目录下mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar-->
+    <classPathEntry
+            location="C:/Users/Administrator/.m2/repository/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar"/>
+
+    <!--配置table表信息内容体，targetruntime指定采用mybatis3的版本-->
+    <context id="tables" targetRuntime="MyBatis3">
+
+        <!--抑制生成注释，由于生成的注释都是英文的，可以不让它生成-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+
+        <!--配置数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/xw_taes"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <!--生成model类，targetPackage指定model类的包名，targetProject指定生成的model放在哪个工程下面-->
+        <javaModelGenerator targetPackage="com.xw.crawer.weather.pojo" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成mybatis的Mapper.xml文件，targetPackage指定Mapper.xml文件包名，targetProject指定生成的Mapper.xml文件放在哪个工程下面-->
+        <sqlMapGenerator targetPackage="com.xw.crawer.weather.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--生成mybatis的Mapper接口类文件，targetPackage指定Mapper接口类文件包名，targetProject指定生成的Mapper接口类文件放在哪个工程下面-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xw.crawer.weather.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--数据库表名及对应的java模型类名,domainObjectName定义的model类的名称-->
+        <table tableName="weather_info"
+               domainObjectName="WeatherInfo"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" />
+        <table tableName="weather_event"
+               domainObjectName="WeatherEvent"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" />
+
+    </context>
+
+</generatorConfiguration>

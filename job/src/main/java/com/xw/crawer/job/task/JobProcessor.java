@@ -121,7 +121,7 @@ public class JobProcessor implements PageProcessor {
                 .addUrl(url)
 //                .setDownloader(httpClientDownloader)
                 .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100*1000)))
-                .thread(10)
+                .thread(20)
                 .addPipeline(springDataPipline)
                 .run();
     }

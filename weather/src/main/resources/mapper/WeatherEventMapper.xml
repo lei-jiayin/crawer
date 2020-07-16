@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xw.crawer.weather.dao.WeatherEventMapper">
+  <resultMap id="BaseResultMap" type="com.xw.crawer.weather.pojo.WeatherEvent">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="event_date" jdbcType="VARCHAR" property="eventDate" />
+    <result column="event_img" jdbcType="VARCHAR" property="eventImg" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="url" jdbcType="VARCHAR" property="url"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, event_date, event_img, title, create_time,description,url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from weather_event
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from weather_event
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xw.crawer.weather.pojo.WeatherEvent">
+    insert into weather_event (id, event_date, event_img, 
+      title, create_time, description,url
+      )
+    values (#{id,jdbcType=INTEGER}, #{eventDate,jdbcType=VARCHAR}, #{eventImg,jdbcType=VARCHAR},
+      #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR},#{url}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xw.crawer.weather.pojo.WeatherEvent">
+    insert into weather_event
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="eventDate != null">
+        event_date,
+      </if>
+      <if test="eventImg != null">
+        event_img,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eventDate != null">
+        #{eventDate,jdbcType=VARCHAR},
+      </if>
+      <if test="eventImg != null">
+        #{eventImg,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xw.crawer.weather.pojo.WeatherEvent">
+    update weather_event
+    <set>
+      <if test="eventDate != null">
+        event_date = #{eventDate,jdbcType=VARCHAR},
+      </if>
+      <if test="eventImg != null">
+        event_img = #{eventImg,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xw.crawer.weather.pojo.WeatherEvent">
+    update weather_event
+    set event_date = #{eventDate,jdbcType=VARCHAR},
+      event_img = #{eventImg,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+        description = #{description,jdbcType=LONGVARCHAR}
+        url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByWeatherEvent" parameterType="com.xw.crawer.weather.pojo.WeatherEvent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from weather_event
+    <where>
+      <if test="eventDate != null and eventDate != ''">
+        event_date = #{eventDate}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteAll">
+    delete from weather_event
+  </delete>
+</mapper>

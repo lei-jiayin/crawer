@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xw.crawer.weather.dao.WeatherInfoMapper">
+  <resultMap id="BaseResultMap" type="com.xw.crawer.weather.pojo.WeatherInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="weather_date" jdbcType="VARCHAR" property="weatherDate" />
+    <result column="weather_name" jdbcType="VARCHAR" property="weatherName" />
+    <result column="t_max" jdbcType="INTEGER" property="tMax" />
+    <result column="t_min" jdbcType="INTEGER" property="tMin" />
+    <result column="win_direction" jdbcType="VARCHAR" property="winDirection" />
+    <result column="win_level" jdbcType="VARCHAR" property="winLevel" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, weather_date, weather_name, t_max, t_min, win_direction, win_level, url, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from weather_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from weather_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xw.crawer.weather.pojo.WeatherInfo">
+    insert into weather_info (id, weather_date, weather_name, 
+      t_max, t_min, win_direction, 
+      win_level, url, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{weatherDate,jdbcType=VARCHAR}, #{weatherName,jdbcType=VARCHAR},
+      #{tMax,jdbcType=INTEGER}, #{tMin,jdbcType=INTEGER}, #{winDirection,jdbcType=VARCHAR}, 
+      #{winLevel,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xw.crawer.weather.pojo.WeatherInfo">
+    insert into weather_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="weatherDate != null">
+        weather_date,
+      </if>
+      <if test="weatherName != null">
+        weather_name,
+      </if>
+      <if test="tMax != null">
+        t_max,
+      </if>
+      <if test="tMin != null">
+        t_min,
+      </if>
+      <if test="winDirection != null">
+        win_direction,
+      </if>
+      <if test="winLevel != null">
+        win_level,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherDate != null">
+        #{weatherDate,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherName != null">
+        #{weatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="tMax != null">
+        #{tMax,jdbcType=INTEGER},
+      </if>
+      <if test="tMin != null">
+        #{tMin,jdbcType=INTEGER},
+      </if>
+      <if test="winDirection != null">
+        #{winDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="winLevel != null">
+        #{winLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertWeatherHistory" parameterType="com.xw.crawer.weather.pojo.WeatherInfo">
+    insert into weather_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="weatherDate != null">
+        weather_date,
+      </if>
+      <if test="weatherName != null">
+        weather_name,
+      </if>
+      <if test="tMax != null">
+        t_max,
+      </if>
+      <if test="tMin != null">
+        t_min,
+      </if>
+      <if test="winDirection != null">
+        win_direction,
+      </if>
+      <if test="winLevel != null">
+        win_level,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherDate != null">
+        #{weatherDate,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherName != null">
+        #{weatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="tMax != null">
+        #{tMax,jdbcType=INTEGER},
+      </if>
+      <if test="tMin != null">
+        #{tMin,jdbcType=INTEGER},
+      </if>
+      <if test="winDirection != null">
+        #{winDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="winLevel != null">
+        #{winLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xw.crawer.weather.pojo.WeatherInfo">
+    update weather_info
+    <set>
+      <if test="weatherDate != null">
+        weather_date = #{weatherDate,jdbcType=VARCHAR},
+      </if>
+      <if test="weatherName != null">
+        weather_name = #{weatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="tMax != null">
+        t_max = #{tMax,jdbcType=INTEGER},
+      </if>
+      <if test="tMin != null">
+        t_min = #{tMin,jdbcType=INTEGER},
+      </if>
+      <if test="winDirection != null">
+        win_direction = #{winDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="winLevel != null">
+        win_level = #{winLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xw.crawer.weather.pojo.WeatherInfo">
+    update weather_info
+    set weather_date = #{weatherDate,jdbcType=VARCHAR},
+      weather_name = #{weatherName,jdbcType=VARCHAR},
+      t_max = #{tMax,jdbcType=INTEGER},
+      t_min = #{tMin,jdbcType=INTEGER},
+      win_direction = #{winDirection,jdbcType=VARCHAR},
+      win_level = #{winLevel,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <delete id="deleteAll">
+    delete from weather_info
+  </delete>
+  <select id="selectFirstWeather" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from weather_info
+    limit 1
+  </select>
+</mapper>

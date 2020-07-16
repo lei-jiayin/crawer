@@ -18,6 +18,7 @@
     <modules>
         <module>job</module>
         <module>commons</module>
+        <module>weather</module>
     </modules>
 
     <properties>
