@@ -19,7 +19,10 @@ public class WeatherTask {
     @Autowired
     public WeatherInfoService weatherInfoService;
 
-    @Scheduled(cron = "0 0 18 * * ?")
+    /**
+     * 每日12点保存当天的天气历史
+     */
+    @Scheduled(cron = "0 0 12 * * ?")
     public void saveWeatherHistory(){
         WeatherInfo weatherInfo = weatherInfoService.selectFirstWeather();
         weatherInfo.setCreateTime(new Date());
