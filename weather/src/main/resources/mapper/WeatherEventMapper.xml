@@ -13,6 +13,14 @@
   <sql id="Base_Column_List">
     id, event_date, event_img, title, create_time,description,url
   </sql>
+
+  <select id="selectByDate" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from weather_event
+    where event_date = #{date}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

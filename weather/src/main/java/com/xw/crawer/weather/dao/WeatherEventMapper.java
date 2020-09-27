@@ -3,6 +3,7 @@ package com.xw.crawer.weather.dao;
 import com.xw.crawer.weather.pojo.WeatherEvent;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -22,4 +23,6 @@ public interface WeatherEventMapper {
     List<WeatherEvent> selectByWeatherEvent(WeatherEvent wee);
 
     void deleteAll();
+
+    WeatherEvent selectByDate(String date);
 }

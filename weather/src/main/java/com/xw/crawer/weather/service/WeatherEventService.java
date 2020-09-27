@@ -5,6 +5,8 @@ import com.xw.crawer.weather.pojo.WeatherEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,5 +31,18 @@ public class WeatherEventService {
         }
         //weatherEventMapper.deleteAll();
         //return weatherEventMapper.insertSelective(we);
+    }
+
+    public WeatherEvent selectByDate(Date date) {
+        //将日期 改为 2020年9月27日
+        String formatDate = DateFormat.getDateInstance(DateFormat.LONG).format(date);
+
+        return weatherEventMapper.selectByDate(formatDate);
+    }
+
+    public static void main(String[] args) {
+        Date date = new Date();
+        String formatDate = DateFormat.getDateInstance(DateFormat.LONG).format(date);
+        System.out.println(formatDate);
     }
 }

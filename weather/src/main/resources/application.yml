@@ -1,12 +1,21 @@
 # @date 2020/7/16 9:25
 spring:
+  activemq:
+    broker-url: tcp://192.168.160.128:61616
+    user: admin
+    password: admin
+  jms:
+    pub-sub-domain: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/xw_taes?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: 123456
+    password: freecg
 server:
   port: 9998
+
+myqueue: activemq-queue
+mytopic: activemq-topic
 
 #配置mybatis的信息
 #spring集成mybatis环境
