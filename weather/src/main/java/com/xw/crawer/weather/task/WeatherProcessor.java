@@ -99,7 +99,7 @@ public class WeatherProcessor implements PageProcessor {
      * fixedDelay每隔多久执行方法
      * 每天11点拉取天气数据
      */
-    @Scheduled(cron = "0 0 11 * * ?")
+    @Scheduled(cron = "0 53 9 * * ?")
     public void prosess(){
 
         // 创建下载器

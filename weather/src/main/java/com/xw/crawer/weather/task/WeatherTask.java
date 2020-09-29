@@ -31,7 +31,7 @@ public class WeatherTask {
     /**
      * 每日12点保存当天的天气历史
      */
-    @Scheduled(cron = "0 30 16 * * ?")
+    @Scheduled(cron = "0 55 9 * * ?")
     // @Scheduled(cron = "0 0 12 * * ?")
     public void saveWeatherHistory(){
         WeatherInfo weatherInfo = weatherInfoService.selectFirstWeather();

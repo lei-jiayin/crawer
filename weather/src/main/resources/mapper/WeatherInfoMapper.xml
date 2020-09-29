@@ -97,7 +97,7 @@
     </trim>
   </insert>
   <insert id="insertWeatherHistory" parameterType="com.xw.crawer.weather.pojo.WeatherInfo">
-    insert into weather_history
+    insert ignore  into weather_history
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
